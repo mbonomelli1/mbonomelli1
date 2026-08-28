@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuel Bonomelli — AI & Customer Solutions</title>
+<meta name="description" content="Manuel Bonomelli — Business Unit Leader, AI & Customer Solutions at Datwave, a BIP Group company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ===== Datwave design system tokens (sampled from brand deck) ===== */
+    --navy:#0E1A2E;          /* deep cover background */
+    --navy-2:#152540;        /* secondary navy panel */
+    --cream:#F8F6F1;         /* light section background */
+    --cream-2:#EBE7E4;       /* light panel / card background */
+    --ink:#15181C;           /* body text on cream */
+    --ink-soft:#5B5F63;
+    --paper-text:#F5F3EE;    /* body text on navy */
+    --paper-text-soft:#A9B3C4;
+    --blue:#22ABF7;          /* brand blue accent */
+    --blue-deep:#1385DE;
+    --gold:#D0A24C;          /* brand gold/amber accent */
+    --line-dark:rgba(245,243,238,0.16);
+    --line-light:#D8D3CB;
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  h1,h2,h3,.display{
+    font-family:'Poppins', sans-serif;
+    font-weight:300;
+    letter-spacing:-0.01em;
+  }
+
+  ::selection{ background:var(--blue); color:#fff; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+  @media (min-width:640px){ .wrap{ padding:0 40px; } }
+  @media (min-width:1024px){ .wrap{ padding:0 56px; } }
+
+  /* ================= HEADER ================= */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(14,26,46,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  @media (min-width:640px){ .nav-inner{ padding:18px 40px; } }
+  @media (min-width:1024px){ .nav-inner{ padding:20px 56px; } }
+
+  .nav-mark{
+    font-family:'Poppins', sans-serif;
+    font-weight:500;
+    font-size:15px;
+    color:var(--paper-text);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+  }
+  .nav-mark .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--blue);
+    box-shadow:0 0 10px var(--blue);
+    flex:none;
+  }
+
+  nav.primary-nav ul{
+    list-style:none;
+    display:flex;
+    gap:28px;
+    margin:0;
+    padding:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  nav.primary-nav a{
+    text-decoration:none;
+    color:var(--paper-text-soft);
+    transition:color .15s ease;
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+  }
+  nav.primary-nav a:hover{ color:var(--blue); border-bottom-color:var(--blue); }
+  nav.primary-nav{ display:none; }
+  @media (min-width:860px){ nav.primary-nav{ display:block; } }
+
+  .menu-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:1px solid var(--line-dark);
+    color:var(--paper-text);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:8px 14px;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  @media (min-width:860px){ .menu-btn{ display:none; } }
+
+  #mobile-menu{
+    display:none;
+    background:var(--navy);
+    border-bottom:1px solid var(--line-dark);
+  }
+  #mobile-menu.open{ display:block; }
+  #mobile-menu ul{
+    list-style:none;
+    margin:0;
+    padding:8px 24px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  #mobile-menu a{
+    display:block;
+    padding:12px 0;
+    text-decoration:none;
+    color:var(--paper-text);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line-dark);
+  }
+
+  /* ================= HERO (navy, brand cover style) ================= */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(34,171,247,0.16), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy) 100%);
+    color:var(--paper-text);
+    padding:64px 0 0;
+    overflow:hidden;
+  }
+  .hero::before{
+    /* faint circuitry texture, echoing the deck's tech-over-architecture motif */
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(34,171,247,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,171,247,0.06) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image: radial-gradient(ellipse at 70% 20%, black, transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    padding-bottom:0;
+    align-items:end;
+  }
+  @media (min-width:900px){
+    .hero-grid{
+      grid-template-columns:1.05fr 0.95fr;
+      gap:56px;
+      padding-bottom:0;
+    }
+  }
+
+  .hero-copy{ padding-top:8px; }
+  @media (min-width:900px){ .hero-copy{ padding-top:28px; } }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:24px; height:1px; background:var(--gold); }
+
+  h1.headline{
+    font-size:clamp(32px, 5.6vw, 56px);
+    line-height:1.1;
+    font-weight:300;
+    margin:0 0 22px;
+    max-width:15ch;
+  }
+  h1.headline em{
+    font-style:normal;
+    font-weight:400;
+    background:linear-gradient(90deg, var(--blue), #6FD0FF);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .hero-sub{
+    font-size:clamp(15px,1.6vw,18px);
+    color:var(--paper-text-soft);
+    max-width:56ch;
+    margin:0 0 32px;
+    font-weight:300;
+  }
+
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--paper-text-soft);
+    margin-bottom:40px;
+  }
+  .hero-meta a{ text-decoration:none; border-bottom:1px solid var(--line-dark); padding-bottom:1px; }
+  .hero-meta a:hover{ color:var(--blue); border-color:var(--blue); }
+
+  /* hero photo panel */
+  .hero-photo{
+    position:relative;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line-dark);
+    aspect-ratio:4/3;
+  }
+  .hero-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:50% 30%;
+    display:block;
+  }
+  .hero-photo .caption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:14px 16px;
+    background:linear-gradient(to top, rgba(9,15,26,0.92), transparent);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--paper-text-soft);
+  }
+  .hero-photo .caption strong{ color:var(--paper-text); font-weight:500; }
+
+  .stat-row{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    border-top:1px solid var(--line-dark);
+    margin-top:56px;
+  }
+  @media (min-width:640px){ .stat-row{ grid-template-columns:repeat(4,1fr); } }
+  .stat{
+    padding:26px 20px;
+    border-right:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+  }
+  @media (min-width:640px){ .stat{ border-bottom:none; } }
+  .stat:nth-child(2n){ border-right:1px solid var(--line-dark); }
+  @media (min-width:640px){ .stat:last-child{ border-right:none; } }
+  .stat .num{
+    font-family:'Poppins', sans-serif;
+    font-weight:300;
+    font-size:clamp(26px,3.4vw,36px);
+    color:var(--blue);
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--paper-text-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .stat:first-child .num{ color:var(--gold); }
+  .stat:nth-child(3) .num{ color:var(--gold); }
+
+  /* ================= SECTION FRAMING ================= */
+  section.block{ padding:64px 0; border-bottom:1px solid var(--line-light); }
+  @media (min-width:1024px){ section.block{ padding:88px 0; } }
+  section.block:last-of-type{ border-bottom:none; }
+  section.block.on-navy{
+    background:var(--navy);
+    color:var(--paper-text);
+    border-bottom:none;
+  }
+
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  @media (min-width:1024px){ .sec-head{ margin-bottom:48px; } }
+  .sec-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--gold);
+    white-space:nowrap;
+    letter-spacing:0.05em;
+  }
+  .sec-head h2{
+    font-size:clamp(24px,3vw,32px);
+    font-weight:300;
+    margin:0;
+  }
+  .sec-head .rule{ flex:1; min-width:24px; height:1px; background:var(--line-light); }
+  .on-navy .sec-head .rule{ background:var(--line-dark); }
+
+  .lede{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:68ch;
+    margin:-16px 0 40px;
+    font-weight:300;
+  }
+  .on-navy .lede{ color:var(--paper-text-soft); }
+
+  /* ================= EXPERIENCE ================= */
+  .role{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    padding:28px 0;
+    border-top:1px solid var(--line-light);
+  }
+  @media (min-width:760px){
+    .role{ grid-template-columns:190px 1fr; gap:32px; }
+  }
+  .role:first-of-type{ border-top:none; padding-top:0; }
+  .role-when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding-top:4px;
+  }
+  .role-when .company{
+    display:block;
+    font-family:'Poppins', sans-serif;
+    font-weight:500;
+    color:var(--ink);
+    font-size:14px;
+    margin-bottom:6px;
+  }
+  .role h3{
+    font-size:20px;
+    font-weight:400;
+    margin:0 0 6px;
+  }
+  .role .grade{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 16px;
+    font-weight:300;
+  }
+  .role ul{ margin:0; padding:0; list-style:none; }
+  .role li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .role li::before{ content:'—'; position:absolute; left:0; color:var(--blue-deep); }
+  .role li strong{ color:var(--ink); font-weight:600; }
+
+  /* ================= ENGAGEMENTS ================= */
+  .eng-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  @media (min-width:680px){ .eng-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:1024px){ .eng-grid{ gap:20px; } }
+
+  .eng-card{
+    background:var(--navy);
+    color:var(--paper-text);
+    padding:28px 26px;
+    border-radius:3px;
+    display:flex;
+    flex-direction:column;
+  }
+  .eng-card .eng-industry{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .eng-card h3{
+    font-size:18px;
+    font-weight:400;
+    margin:0 0 4px;
+    line-height:1.3;
+    color:var(--paper-text);
+  }
+  .eng-card .eng-when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--paper-text-soft);
+    margin-bottom:16px;
+    display:block;
+  }
+  .eng-card p{
+    font-size:14px;
+    color:var(--paper-text-soft);
+    margin:0 0 16px;
+    font-weight:300;
+    flex:1;
+  }
+  .eng-card p.role-line{
+    color:var(--paper-text);
+    font-size:13px;
+    border-top:1px solid var(--line-dark);
+    padding-top:14px;
+    margin-bottom:0;
+    flex:none;
+  }
+  .eng-card p.role-line strong{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    color:var(--blue);
+    display:block;
+    margin-bottom:6px;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ================= COMPETENCIES ================= */
+  .comp-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  @media (min-width:640px){ .comp-grid{ grid-template-columns:1fr 1fr; gap:32px 44px; } }
+  @media (min-width:1024px){ .comp-grid{ grid-template-columns:1fr 1fr 1fr; } }
+
+  .comp{ border-left:2px solid var(--blue); padding-left:16px; }
+  .comp h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--gold);
+    margin:0 0 8px;
+  }
+  .comp p{ font-size:14px; color:var(--ink-soft); margin:0; font-weight:300; }
+
+  .tools-strip{
+    margin-top:48px;
+    padding-top:36px;
+    border-top:1px solid var(--line-light);
+  }
+  .tools-strip h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--blue-deep);
+    margin:0 0 16px;
+  }
+  .tool-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tool-tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    padding:6px 12px;
+    border:1px solid var(--line-light);
+    color:var(--ink-soft);
+    background:var(--cream-2);
+    border-radius:2px;
+  }
+
+  /* ================= EDUCATION ================= */
+  .ed-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  @media (min-width:680px){ .ed-grid{ grid-template-columns:1fr 1fr; gap:40px; } }
+  .ed-item h3{ font-size:18px; font-weight:400; margin:0 0 4px; }
+  .ed-item .ed-when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:10px;
+  }
+  .ed-item p{ font-size:14px; color:var(--ink-soft); margin:0; font-weight:300; }
+
+  .certs{ margin-top:44px; padding-top:32px; border-top:1px solid var(--line-light); }
+  .certs h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--gold);
+    margin:0 0 14px;
+  }
+  .certs p{ font-size:14px; color:var(--ink-soft); margin:0 0 8px; font-weight:300; }
+  .certs p strong{ color:var(--ink); font-weight:600; }
+
+  .footer-cols{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+    margin-top:44px;
+    padding-top:32px;
+    border-top:1px solid var(--line-light);
+  }
+  @media (min-width:680px){ .footer-cols{ grid-template-columns:1fr 1fr; gap:40px; } }
+  .footer-cols h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--blue-deep);
+    margin:0 0 10px;
+  }
+  .footer-cols p{ font-size:14px; color:var(--ink-soft); margin:0; font-weight:300; }
+
+  /* ================= CONTACT ================= */
+  .contact-inner{ position:relative; }
+  .contact h2.big{
+    font-size:clamp(28px,4.6vw,46px);
+    font-weight:300;
+    max-width:18ch;
+    margin:0 0 20px;
+    color:var(--paper-text);
+  }
+  .contact p.sub{
+    color:var(--paper-text-soft);
+    font-size:16px;
+    max-width:56ch;
+    margin:0 0 36px;
+    font-weight:300;
+  }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    padding:14px 22px;
+    border:1px solid var(--line-dark);
+    color:var(--paper-text);
+    border-radius:2px;
+    transition:all .15s ease;
+  }
+  .btn.primary{ background:var(--blue); border-color:var(--blue); color:#08131F; font-weight:500; }
+  .btn.primary:hover{ background:#4FC2FF; border-color:#4FC2FF; }
+  .btn:not(.primary):hover{ background:rgba(255,255,255,0.06); border-color:var(--paper-text-soft); }
+
+  footer.site-footer{ padding:32px 0 48px; background:var(--navy); }
+  .footer-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--paper-text-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  a:focus-visible, .btn:focus-visible, .menu-btn:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark"><span class="dot"></span>M. BONOMELLI</a>
+    <nav class="primary-nav">
+      <ul>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#engagements">Engagements</a></li>
+        <li><a href="#competencies">Competencies</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+  </div>
+  <div id="mobile-menu">
+    <ul>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#engagements">Engagements</a></li>
+      <li><a href="#competencies">Competencies</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="profile">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Business Unit Leader — AI &amp; Customer Solutions</div>
+          <h1 class="headline">I still design the solutions I sell — <em>then I run the business built around them.</em></h1>
+          <p class="hero-sub">Eight years in one group: hands-on data &amp; AI engineer, then solution architect, then Business Unit Leader running a €1M+ P&amp;L inside Datwave, a deployed company of BIP Group.</p>
+          <div class="hero-meta">
+            <span>Rome, Italy</span>
+            <a href="mailto:manu.bonom@gmail.com">manu.bonom@gmail.com</a>
+            <a href="tel:+393423213672">+39 342 3213672</a>
+            <a href="https://www.linkedin.com/in/manuel-bonomelli-433697147" target="_blank" rel="noopener">linkedin.com/in/manuel-bonomelli</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="img/hero-event.jpg" alt="Manuel Bonomelli presenting the Datwave AI Adoption Program on stage, live-demoing an agentic assistant to an audience.">
+          <div class="caption"><strong>Live, on stage.</strong> Presenting the AI Adoption Program to ~60 practitioners.</div>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><div class="num">150+</div><div class="label">Pre-sales engagements</div></div>
+        <div class="stat"><div class="num">40+</div><div class="label">Projects delivered</div></div>
+        <div class="stat"><div class="num">30+</div><div class="label">Offerings productised</div></div>
+        <div class="stat"><div class="num">€1M+</div><div class="label">Budget owned</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-tag">01 / EXPERIENCE</span><span class="rule"></span></div>
+
+      <div class="role">
+        <div class="role-when"><span class="company">Datwave (BIP Group)</span>Jul 2024 — Present</div>
+        <div>
+          <h3>Business Unit Leader — AI &amp; Customer Solutions</h3>
+          <p class="grade">Corporate grade: Manager. Moved into the group's new Deployed Company to build and run its market-facing AI and MarTech unit — still practising as solution architect and pre-sales engineer alongside running it.</p>
+          <ul>
+            <li><strong>Business ownership.</strong> Run the unit's P&amp;L and management control — budget, margin, allocation, forecasting — plus the offering roadmap and go-to-market strategy across AI Adoption, MarTech, AI for Fashion, AI for Manufacturing, AI for Multi-Utilities.</li>
+            <li><strong>Pre-sales.</strong> Support Sales in client pitches, solution design, proposals and effort modelling; run account planning and proactive opportunity scouting.</li>
+            <li><strong>Delivery.</strong> Own the sourcing pipeline, project staffing and quality assurance across concurrent engagements.</li>
+            <li><strong>Solutions &amp; R&amp;D.</strong> Design solutions personally on new client onboardings and innovation projects; run the unit's R&amp;D — evaluating emerging AI platforms, building prototypes ahead of client demand.</li>
+            <li><strong>People leadership.</strong> Lead 15 people — AI Engineer, Data Engineer, PM, Cloud Architect, MarTech Specialist, Designer, among others.</li>
+            <li><strong>AI Adoption Program.</strong> Designed and lead the company-wide program at Datwave — ~60 practitioners, owning governance, ROI measurement and the practitioner community.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-when"><span class="company">BIP</span>Feb 2019 — Jul 2024</div>
+        <div>
+          <h3>Data &amp; AI Engineer → Solution Architect &amp; Pre-Sales Engineer</h3>
+          <p class="grade">Corporate grade: intern to Manager. Started hands-on in data and AI engineering, moved into architecture and technical pre-sales, then into engagement and team leadership — the track that led to Datwave.</p>
+          <ul>
+            <li><strong>Hands-on engineering.</strong> Built 30+ solutions myself, from data pipelines to BI reporting, including 10+ AI/ML models for use cases like forecasting.</li>
+            <li><strong>Client-facing growth.</strong> Moved into client advisory, solution architecture and pre-sales — supporting managers and partners on medium/large deals across Telecommunications, Utilities, Travel, Financial Services and Consumer Goods.</li>
+            <li><strong>Delivery leadership.</strong> Led 20+ projects as delivery lead, including strategic transformation initiatives.</li>
+            <li><strong>Offering development.</strong> Designed and launched commercial offerings in MarTech, BI, AI and Customer Platforms — from market need to sellable service.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="engagements">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-tag">02 / ENGAGEMENTS</span><span class="rule"></span></div>
+      <p class="lede">From 2024 onward, I owned the delivery team and the engagement P&amp;L alongside the solution — staffing, effort and margin, not only the design.</p>
+
+      <div class="eng-grid">
+        <div class="eng-card">
+          <span class="eng-industry">Luxury Goods Maison</span>
+          <h3>Multi-Agent System for Retail Client Advisors</h3>
+          <span class="eng-when">May 2026 — Present</span>
+          <p>An assistant that lets in-store advisors retrieve client history, product availability and clienteling context in natural language during a sale, and drafts the follow-up outreach afterwards.</p>
+          <p class="role-line"><strong>Role</strong>Solution lead for the agentification of the client advisor role — multi-agent architecture, frontend and interaction strategy, CRM/clienteling integration, guiding a multidisciplinary team on build and target operating model.</p>
+        </div>
+
+        <div class="eng-card">
+          <span class="eng-industry">Global Consumer Goods Company</span>
+          <h3>Generative Video &amp; AI Applications for Marketing</h3>
+          <span class="eng-when">Oct 2025 — Present</span>
+          <p>Two workstreams: generative video for advertising on Google Veo — prompt/shot design, model evaluation, benchmarking; and an end-to-end app generating recipe copy and step-by-step imagery.</p>
+          <p class="role-line"><strong>Role</strong>Program lead for the marketing organisation's generative AI adoption — client relationship, roadmap, coordinating technical/design specialists, driving QA directly on the solution.</p>
+        </div>
+
+        <div class="eng-card">
+          <span class="eng-industry">Luxury Goods Maison</span>
+          <h3>AI-Driven Product Industrialisation</h3>
+          <span class="eng-when">May 2026 — Present</span>
+          <p>A system automating manufacturing instructions for new products, end to end from quotation through industrialisation to production — built to scale toward robotic manufacturing execution.</p>
+          <p class="role-line"><strong>Role</strong>Solution designer and technical lead — AI integration at each stage, target architecture, on-site requirements gathering at the factory, guiding a multidisciplinary build team.</p>
+        </div>
+
+        <div class="eng-card">
+          <span class="eng-industry">Travel Company</span>
+          <h3>AI, CDP &amp; Real-Time Personalisation</h3>
+          <span class="eng-when">Oct 2024 — May 2025</span>
+          <p>A shift from product-centric to customer-centric: a Customer Data Platform combined with AI models and a personalisation engine driving real-time website experiences.</p>
+          <p class="role-line"><strong>Role</strong>Architect and technical lead — integration design, software selection, use-case definition.</p>
+        </div>
+
+        <div class="eng-card">
+          <span class="eng-industry">Utilities Comparison Company</span>
+          <h3>Enterprise Architecture Strategy &amp; Real-Time AI</h3>
+          <span class="eng-when">Apr 2024 — May 2025</span>
+          <p>A multi-stream enterprise architecture program including real-time AI scoring across the sales funnel — leads scored on conversion likelihood, routed dynamically, replacing static assignment rules.</p>
+          <p class="role-line"><strong>Role</strong>Technical program manager and enterprise architect — target architecture, AI scoring system integration, owning architecture and PoC model development.</p>
+        </div>
+
+        <div class="eng-card">
+          <span class="eng-industry">Telecommunications Company</span>
+          <h3>Customer Data Platform &amp; CVM Evolution</h3>
+          <span class="eng-when">Jun 2023 — Sep 2025</span>
+          <p>A two-year engagement from build to advisory: a CDP implementation on Google Cloud ahead of third-party cookie deprecation, including the integration middle layer — on time, within budget.</p>
+          <p class="role-line"><strong>Role</strong>Technical lead on build; then technical advisor and strategist to the CVM function, driving vendor selection for the new campaign management stack.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="competencies">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-tag">03 / COMPETENCIES</span><span class="rule"></span></div>
+
+      <div class="comp-grid">
+        <div class="comp">
+          <h4>Commercial</h4>
+          <p>End-to-end offering pipeline: designing and updating service offerings, disseminating them to Sales, supporting client pitches and deal stages through to close, effort estimation and pricing.</p>
+        </div>
+        <div class="comp">
+          <h4>Operations</h4>
+          <p>Delivery setup, sourcing and team allocation, margin management across engagements, delivery escalation, direct ownership of strategic engagements; balancing AI agents against internal staffing.</p>
+        </div>
+        <div class="comp">
+          <h4>Strategy</h4>
+          <p>Technical advisory to clients, operating-model advisory, benchmarking against peer clients, AI-agent-driven industry research, AI adoption strategy and introduction.</p>
+        </div>
+        <div class="comp">
+          <h4>AI Engineering</h4>
+          <p>End-to-end AI and Generative/Agentic AI delivery: use-case framing, architecture, build, evaluation, production rollout, adoption. Enterprise scale-up of multi-agent systems and design pattern definition (e.g. LLM Wiki).</p>
+        </div>
+        <div class="comp">
+          <h4>MarTech</h4>
+          <p>Customer Data Platform design and implementation, Customer Value Management evolution, campaign management, personalisation and next-best-action, measurement architecture, first-party data strategy.</p>
+        </div>
+        <div class="comp">
+          <h4>Data &amp; BI Engineering</h4>
+          <p>Data pipeline and analytics platform development, BI reporting, data platform architecture and design.</p>
+        </div>
+        <div class="comp">
+          <h4>Enterprise &amp; Solution Architecture</h4>
+          <p>Target architecture, integration and middle layers, build-versus-buy and vendor selection, solution design across concurrent engagements.</p>
+        </div>
+        <div class="comp">
+          <h4>Vibe Coding</h4>
+          <p>Rapid prototyping and AI-assisted software development, from idea to working proof-of-concept.</p>
+        </div>
+      </div>
+
+      <div class="tools-strip">
+        <h4>Tools &amp; Technologies</h4>
+        <div class="tool-tags">
+          <span>Vertex AI</span><span>BigQuery</span><span>Cloud Run</span><span>ADK</span><span>A2A</span>
+          <span>GA4</span><span>GTM</span><span>Google Ads</span>
+          <span>Fabric</span><span>Power Apps</span><span>Power BI</span>
+          <span>Claude</span><span>Cowork</span><span>Code</span>
+          <span>Tealium</span><span>Adobe</span><span>Zeotap</span><span>Dynamic Yield</span><span>HubSpot</span>
+          <span>Python</span><span>SQL</span><span>Cursor</span><span>Antigravity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-tag">04 / EDUCATION</span><span class="rule"></span></div>
+
+      <div class="ed-grid">
+        <div class="ed-item">
+          <h3>MSc International Management</h3>
+          <span class="ed-when">University of Bergamo, Italy · Oct 2016 — Oct 2018</span>
+          <p>110/110 cum laude, average 29.5/30, 13 exams cum laude. Includes the Troika Program (Russia — Austria — Italy), a scholarship year with 30 students from foreign universities.</p>
+        </div>
+        <div class="ed-item">
+          <h3>BSc Business Administration</h3>
+          <span class="ed-when">University of Bergamo, Italy · Oct 2013 — Oct 2016</span>
+          <p>Economics, finance and quantitative methods — 108/110.</p>
+        </div>
+      </div>
+
+      <div class="certs">
+        <h4>Certifications</h4>
+        <p><strong>Google &amp; Google Cloud —</strong> Cloud Digital Leader · Looker · Google Ads · Google Analytics 4 · Google Tag Manager</p>
+        <p><strong>Microsoft &amp; MarTech —</strong> Azure Data Analyst Associate · Power Platform · Zeotap Customer Data Platform certification</p>
+      </div>
+
+      <div class="footer-cols">
+        <div>
+          <h4>Languages</h4>
+          <p>Italian (native) · English (fluent) · Spanish (fluent) · Russian (basic)</p>
+        </div>
+        <div>
+          <h4>Beyond Work</h4>
+          <p>Judo &amp; Karate coach (2011–2016) — 2nd DAN Karate, 1st DAN Judo. Volunteer, 6 Ruote di Speranza (2012–2013).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block on-navy contact" id="contact">
+    <div class="wrap contact-inner">
+      <div class="sec-head"><span class="sec-tag">05 / CONTACT</span><span class="rule"></span></div>
+      <h2 class="big">Building something worth committing to? Let's talk.</h2>
+      <p class="sub">Open to senior individual-contributor and advisory roles where technical depth and go-to-market judgement compound — not just another title.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:manu.bonom@gmail.com">Email me →</a>
+        <a class="btn" href="https://www.linkedin.com/in/manuel-bonomelli-433697147" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="tel:+393423213672">+39 342 3213672</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-note">
+    <span>Manuel Bonomelli — Rome, Italy</span>
+    <span>Updated August 2026</span>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
